@@ -5,6 +5,8 @@ const compression = require("compression");
 
 const PORT = 3000;
 
+require("dotenv").config();
+
 const app = express();
 
 app.use(logger("dev"));
@@ -15,9 +17,9 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost/budget", {
+mongoose.connect(process.env.URL, {
   useNewUrlParser: true,
-  useFindAndModify: false
+  useFindAndModify: false,
 });
 
 // routes
